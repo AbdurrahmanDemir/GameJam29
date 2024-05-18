@@ -108,7 +108,7 @@ namespace EthanTheHero
 			else
 			{
                 targetSpeed = move.x * data.runMaxSpeed;
-				myAnim.speed =currentAnimSpeed;
+				myAnim.speed = currentAnimSpeed;
             }
 			
 

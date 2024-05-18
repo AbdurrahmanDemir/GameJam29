@@ -12,6 +12,7 @@ namespace EthanTheHero
 		private PlayerMovement playerMv;
 		private Animator myAnim;
 		private Rigidbody2D myBody;
+		public GameObject damageCheck;
 
 		[Header("Basic Attack")]
 		public float basicAttack01Power = 0.5f;
@@ -45,7 +46,11 @@ namespace EthanTheHero
 
 			BasicAttackCombo();
 
-
+			if (Input.GetMouseButton(1))
+			{
+                Time.timeScale = 0.1f;
+                myAnim.speed *= 100;
+            }
 		}
 
 		void FixedUpdate()
@@ -152,8 +157,23 @@ namespace EthanTheHero
 
 		}
 
-		#endregion
+        #endregion
+
+        public void TryAttack()
+        {
+            if (!damageCheck.gameObject.activeSelf)
+            {
+                damageCheck.gameObject.SetActive(true);
+            }
+            else
+            {
+                damageCheck.gameObject.SetActive(false);
+            }
+
+        }
 
 
-	}
+
+    }
+
 }

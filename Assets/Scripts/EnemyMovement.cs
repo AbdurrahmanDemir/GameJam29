@@ -9,6 +9,7 @@ public class EnemyMovement : MonoBehaviour
     bool isAttack;
     [SerializeField] private float speed;
     Animator animator;
+    [SerializeField] private GameObject damageCheck;
 
     private void Start()
     {
@@ -18,23 +19,15 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        Move();
-        TryAttack();
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
+        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        if (distanceToPlayer < 5f)
         {
             isMove = true;
         }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
+        else
             isMove = false;
-        }
-
+        Move();
+        TryAttack();
     }
     public void Move()
     {
@@ -42,7 +35,9 @@ public class EnemyMovement : MonoBehaviour
         {
             Vector2 direction = (player.transform.position - transform.position).normalized;
             Vector2 targetPosition = (Vector2)transform.position + direction * speed * Time.deltaTime;
-            animator.Play("Run");
+            if(isMove&&!isAttack)
+                animator.Play("Run");
+
             transform.position = targetPosition;
         }
         else
@@ -62,7 +57,7 @@ public class EnemyMovement : MonoBehaviour
     private void TryAttack()
     {
         float distanceToPlayer= Vector2.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer < 1f)
+        if (distanceToPlayer < 2f)
         {
             isAttack = true;
             Attack();
@@ -87,5 +82,19 @@ public class EnemyMovement : MonoBehaviour
     public void SlowMotionOff()
     {
         Time.timeScale = 1f;
+        player.GetComponent<Animator>().speed = 1;
+    }
+
+    public void DamageCheckController()
+    {
+        if (!damageCheck.gameObject.activeSelf)
+        {
+            damageCheck.gameObject.SetActive(true);
+        }
+        else
+        {
+            damageCheck.gameObject.SetActive(false);
+        }
+
     }
 }
