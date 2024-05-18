@@ -28,6 +28,16 @@ public class EnemyMovement : MonoBehaviour
             isMove = false;
         Move();
         TryAttack();
+
+
+        //if (Input.GetKey(KeyCode.E))
+        //{
+        //    SlowMotionOn();
+        //}
+        //else
+        //{
+        //    SlowMotionOff();
+        //}
     }
     public void Move()
     {

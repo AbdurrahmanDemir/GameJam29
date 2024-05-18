@@ -20,8 +20,8 @@ MonoBehaviour:
   accelInAir: 0.5
   deccelInAir: 0.5
   doConserveMomentum: 1
-  jumpHeight: 8
-  dashPower: 15
+  jumpHeight: 12
+  dashPower: 5
   dashingCoolDown: 0.5
   dashingTime: 0.2
   wallDistance: 0.03
