@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float speed;
     Animator animator;
     [SerializeField] private GameObject damageCheck;
+    [SerializeField] private GameObject timeText;
 
     private void Start()
     {
@@ -88,11 +89,13 @@ public class EnemyMovement : MonoBehaviour
     {
         Time.timeScale = 0.1f;
         player.GetComponent<Animator>().speed *= 50;
+        timeText.SetActive(true);
     }
     public void SlowMotionOff()
     {
         Time.timeScale = 1f;
         player.GetComponent<Animator>().speed = 1;
+        timeText.SetActive(false);
     }
 
     public void DamageCheckController()

@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
     public Transform target;
     public Vector3 targetOffset;
+    public GameObject panel;
 
     private void Start()
     {
@@ -14,5 +15,9 @@ public class CameraController : MonoBehaviour
     private void LateUpdate()
     {
         transform.position = Vector3.Lerp(transform.position, target.position + targetOffset, .125f);
+    }
+    public void panelOff()
+    {
+        panel.SetActive(false);
     }
 }
